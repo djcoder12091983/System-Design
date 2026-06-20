@@ -5,7 +5,7 @@ import org.lld.creational.builder.report.ReportBuilder;
 
 // 4. Concrete Builder B: Plain Text Formatter
 public class PlainTextReportBuilder implements ReportBuilder {
-    private Report report = new Report();
+    private final Report report = new Report();
 
     @Override public void buildHeader() { report.setHeader("=== FINANCIAL REPORT ==="); }
     @Override public void buildBody() { report.setBody("Net Income: $30,000 (Revenue: $50k, Expenses: $20k)"); }

@@ -10,10 +10,10 @@ public enum DatabaseConnectionPoolEnum implements DatabaseConnectionPoolManager 
     }
 
     // this will delegate actual operations
-    private DatabaseConnectionPoolManager delegate = new DatabaseConnectionPoolManagerHelper();
+    private final DatabaseConnectionPoolManager delegate = new DatabaseConnectionPoolManagerHelper();
 
     // constructor
-    private DatabaseConnectionPoolEnum() {
+    DatabaseConnectionPoolEnum() {
         // private constructor
     }
 

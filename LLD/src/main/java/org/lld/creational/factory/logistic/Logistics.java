@@ -15,5 +15,5 @@ public abstract class Logistics {
     }
 
     // This is the actual Factory Method
-    protected abstract Transport createTransport();
+    public abstract Transport createTransport();
 }

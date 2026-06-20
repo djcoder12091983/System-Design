@@ -5,9 +5,9 @@ import java.util.List;
 
 // this class will have forest properties and rendering part and all
 public class ForestChunk implements MapChunk {
-    private List<String> heavyTextures; // Heavy resource shared across clones
+    private final List<String> heavyTextures; // Heavy resource shared across clones
     private int enemySpawnRate;          // Variable state custom to each clone
-    private String weatherEffect;
+    private final String weatherEffect;
 
     // Heavy constructor simulating I/O or procedural generation
     public ForestChunk(String weatherEffect) {
