@@ -1,7 +1,7 @@
 package org.lld.structural.flyweight.notification;
 
 // extrinsic state
-class NotificationJob {
+public class NotificationJob {
     // Extrinsic State: Unique data unique to this specific message transaction
     private final String recipientEmail;
     private final String recipientName;

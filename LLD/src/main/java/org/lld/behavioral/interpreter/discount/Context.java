@@ -5,7 +5,7 @@ import java.util.Map;
 
 // The context acts as a data repository containing the variable key-value pairs
 // that the interpreter evaluates against.
-class Context {
+public class Context {
     private final Map<String, Object> parameters = new HashMap<>();
 
     public void setParam(String key, Object value) {
