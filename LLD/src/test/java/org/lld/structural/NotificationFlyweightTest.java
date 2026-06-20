@@ -52,11 +52,11 @@ public class NotificationFlyweightTest extends DPTestSuit {
 
         // Assert job 1 executed parameters accurately
         assertTrue(outJob1.contains("Dispatching email to [alice@mail.com]"));
-        assertTrue(outJob1.contains("Dear Alice Smith"));
+        assertTrue(outJob1.contains("Order #1001 confirmed"));
 
         // Assert job 2 execution stayed completely isolated from job 1 state attributes
         assertTrue(outJob2.contains("Dispatching email to [bob@test.com]"));
-        assertTrue(outJob2.contains("Dear Bob Jones"));
+        assertTrue(outJob2.contains("Order #1002 confirmed"));
         assertFalse(outJob2.contains("Alice Smith"), "Extrinsic state pollution leak tracking error located across shared flyweight objects");
     }
 }

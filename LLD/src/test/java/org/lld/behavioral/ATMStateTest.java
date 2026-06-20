@@ -44,7 +44,7 @@ public class ATMStateTest extends DPTestSuit {
     void testStateGuardrailsAndSecurityExceptions() {
         // Attempting to input a PIN before inserting a card
         atm.enterPin(4321);
-        String errLog1 = outputStreamCaptor.toString();
+        String errLog1 = errorStreamCaptor.toString();
         assertTrue(errLog1.contains("[ERROR] Please insert a debit card before authentication."), "System processed illegal state operation");
 
         outputStreamCaptor.reset();
@@ -52,7 +52,7 @@ public class ATMStateTest extends DPTestSuit {
         // Inserting card but entering a bad PIN code
         atm.insertCard();
         atm.enterPin(0000);
-        String errLog2 = outputStreamCaptor.toString();
+        String errLog2 = errorStreamCaptor.toString();
         assertTrue(errLog2.contains("[ATM ERROR] Incorrect PIN code. Transaction terminated."), "System failed to trap bad authentication code");
     }
 
@@ -70,7 +70,7 @@ public class ATMStateTest extends DPTestSuit {
 
         // Attempt subsequent card injection
         atm.insertCard();
-        String blockLog = outputStreamCaptor.toString();
+        String blockLog = errorStreamCaptor.toString();
         assertTrue(blockLog.contains("[OUT OF SERVICE] Machine empty. Card rejected."), "Terminal failed to lock operations post-depletion");
     }
 }

@@ -11,15 +11,19 @@ import java.io.PrintStream;
 // so that we can read from there
 public class DPTestSuit {
     protected final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    protected final ByteArrayOutputStream errorStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out; // original one
+    private final PrintStream originalErr = System.err; // original error stream
 
     @BeforeEach
     void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
+        System.setErr(new PrintStream(errorStreamCaptor));
     }
 
     @AfterEach
     void tearDown() {
         System.setOut(originalOut);
+        System.setErr(originalErr);
     }
 }

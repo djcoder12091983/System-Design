@@ -47,7 +47,8 @@ public class GatewayCORTest extends DPTestSuit {
 
         String out = outputStreamCaptor.toString();
         assertTrue(out.contains("[Log Filter] Intercepted request"), "Logging should still execute first");
-        assertTrue(out.contains("[Auth Filter ERROR] 401 Unauthorized"), "Auth should explicitly fail request");
+        String error = errorStreamCaptor.toString();
+        assertTrue(error.contains("[Auth Filter ERROR] 401 Unauthorized"), "Auth should explicitly fail request");
 
         // Assert short-circuit protection boundaries
         assertFalse(out.contains("[Rate Limiter]"), "Security Flaw: Rate Limiter ran despite Auth failure");
@@ -62,8 +63,9 @@ public class GatewayCORTest extends DPTestSuit {
         pipelineChain.handle(throttledRequest);
 
         String out = outputStreamCaptor.toString();
+        String error = errorStreamCaptor.toString();
         assertTrue(out.contains("[Auth Filter] Token Approved"), "Auth should pass credentials smoothly");
-        assertTrue(out.contains("[Rate Limiter ERROR] 429 Too Many Requests"), "Rate limiter failed to block malicious IP");
+        assertTrue(error.contains("[Rate Limiter ERROR] 429 Too Many Requests"), "Rate limiter failed to block malicious IP");
         assertFalse(out.contains("Success: Request successfully routed"), "Throttled request erroneously hit back-end layer");
     }
 }

@@ -32,7 +32,7 @@ public class InternetProxyProviderTest extends DPTestSuit {
 
         proxyFirewall.connectToWebsite("facebook.com");
 
-        String logs = outputStreamCaptor.toString().trim();
+        String logs = errorStreamCaptor.toString().trim();
 
         // Assert the proxy's defensive firewall behavior
         assertTrue(logs.contains("[FIREWALL BLOCK] Access Denied to unsafe site: facebook.com"),
